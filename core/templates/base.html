@@ -1,0 +1,27 @@
+{% load static %}  <!-- Charge le tag static pour inclure les fichiers statiques comme le CSS et le logo -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Page de base{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">  
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="/"><img src="{% static 'images/seer_logo.webp' %}" alt="Logo"></a>  
+        </div>
+
+    </header>
+
+    <main>
+        <h1>{% block content_title %}<h1>Titre par défaut</h1>{% endblock %}</h1>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+
+</body>
+</html>

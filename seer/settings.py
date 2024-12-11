@@ -25,8 +25,9 @@ SECRET_KEY = 'django-insecure-xurkq1_5zk!)8%&w^&=7b7))e*gl)vcsg^kbzgmys87eqh^dpm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+...
+ALLOWED_HOSTS = ["*", "127.0.0.1", "localhost"]
+...
 
 # Application definition
 
@@ -37,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "core",
+
 ]
 
 MIDDLEWARE = [
@@ -54,8 +57,8 @@ ROOT_URLCONF = 'seer.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [],  # Laisse vide pour que Django recherche automatiquement
+        'APP_DIRS': True,  # Active la recherche dans les dossiers templates des apps
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',

@@ -1,0 +1,32 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #91BBFF;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;  /* Utilisation de Flexbox */
+    justify-content: center;  /* Centre le logo horizontalement */
+    align-items: center;  /* Centre le logo verticalement */
+    background-color: #91BBFF;
+    padding: 10px 0;
+}
+
+header .logo img {
+    width: 150px;  /* Largeur du logo */
+    height: auto;  /* Garde les proportions du logo */
+}
+
+/* Media query pour rendre le logo responsive */
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;  /* Permet d'empiler les éléments (si tu as plus de contenu dans le header) */
+        text-align: center;  /* Centrer le contenu dans le header */
+    }
+
+    header .logo img {
+        width: 120px;  /* Ajuste la taille du logo pour les petits écrans */
+    }
+}
