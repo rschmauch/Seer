@@ -1,24 +1,31 @@
 import requests
 from bs4 import BeautifulSoup
-import sys
-
+# import sys
 # Configurer la sortie pour UTF-8
-sys.stdout.reconfigure(encoding='utf-8')
+# sys.stdout.reconfigure(encoding='utf-8')
 
-r = requests.get('http://www.scrapethissite.com/pages/simple/')
-print(r.status_code)
+url_demo = 'http://www.scrapethissite.com/pages/simple/'
+def contenu_site(url):
+    try:
+        # Envoyer une requête GET au site
+        response = requests.get(url)
+        response.raise_for_status()  # Vérifier si la requête a réussi (code 200)
 
-def parse_country():
-    r = requests.get('http://www.scrapethissite.com/pages/simple/')
-    soup = BeautifulSoup(r.text, 'html.parser')
+        # Parse le HTML avec BeautifulSoup
+        soup = BeautifulSoup(response.text, 'html.parser')
 
-    # La méthode prettify() permet d'afficher le contenu de manière lisible, c'est pas obligatoire
-    # print(soup.prettify())
+        # Récupérer tous les éléments textuels dans l'ordre
+        elements = soup.find_all(['h1', 'h2', 'h3', 'p', 'li', 'a'])
 
-    countries_cards = soup.find_all('div', class_='col-md-4 country')
-    for card in countries_cards:
-        country_name = card.find('h3').text.strip()
-        # La méthode strip() permet d'enlever les espaces, c'est pas obligatoire
-        print(country_name)
+        print("\nContenu du site dans l'ordre :\n")
+        for element in elements:
+            text = element.get_text(strip=True)
+            if text:  # Ignorer les éléments sans texte
+                print(f"{element.name.upper()}: {text}")
+    
+    except requests.exceptions.RequestException as e:
+        print(f"Erreur lors de la requête : {e}")
 
-parse_country()
+    
+
+contenu_site(url_demo)
