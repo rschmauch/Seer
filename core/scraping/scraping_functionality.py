@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 # Configurer la sortie pour UTF-8
 # sys.stdout.reconfigure(encoding='utf-8')
 
-url_demo = 'http://www.scrapethissite.com/pages/simple/'
 def contenu_site(url):
     try:
         # Envoyer une requête GET au site
@@ -25,7 +24,6 @@ def contenu_site(url):
     
     except requests.exceptions.RequestException as e:
         print(f"Erreur lors de la requête : {e}")
-
     
-
-contenu_site(url_demo)
+# url_demo = 'https://www.francetvinfo.fr/'
+# contenu_site(url_demo)
