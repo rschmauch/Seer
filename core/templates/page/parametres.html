@@ -17,11 +17,11 @@
               </li>
               <li>
                 <label for="language">Language par défaut</label>
-                {% include select.html with name="language" list=[{"name":"en","display": "English"}{"name":"fr","display": "Français"}] %}
+                {% include "../components/select.html" with name="language" list=LANGUAGES %}
               </li>
               <li>
                 <label for="constrast">Contraste</label>
-                {% include select.html with name="contraste" list=[{"name":"ry","display": "Red and Yellow"}{"name":"rb","display": "Red and Blue"}] %}
+                {% include "../components/select.html" with name="contraste" list=COLORS %}
               </li>
               <li>
                 <label for="textmode">Mode texte seulement</label>
