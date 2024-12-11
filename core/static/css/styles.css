@@ -7,26 +7,183 @@ body {
 }
 
 header {
-    display: flex;  /* Utilisation de Flexbox */
-    justify-content: center;  /* Centre le logo horizontalement */
-    align-items: center;  /* Centre le logo verticalement */
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
     background-color: #91BBFF;
-    padding: 10px 0;
+    padding: 10px 20px;
+    position: relative;  
 }
 
 header .logo img {
-    width: 150px;  /* Largeur du logo */
-    height: auto;  /* Garde les proportions du logo */
+    width: 150px;  
+    height: auto;  
 }
 
-/* Media query pour rendre le logo responsive */
+header .user-profile {
+    position: absolute;  
+    right: 20px; 
+    display: flex;
+    align-items: center;
+}
+
+header .user-profile img {
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%;  
+    background-color: #ffffff;  
+    border: 2px solid #27496d;  
+}
+
 @media screen and (max-width: 768px) {
     header {
-        flex-direction: column;  /* Permet d'empiler les éléments (si tu as plus de contenu dans le header) */
-        text-align: center;  /* Centrer le contenu dans le header */
+        flex-direction: column;  
+        text-align: center;  
     }
 
     header .logo img {
-        width: 120px;  /* Ajuste la taille du logo pour les petits écrans */
+        width: 120px;  
+    }
+
+    header .user-profile {
+        position: static;  
+        margin-top: 10px;  
+    }
+
+    header .user-profile img {
+        width: 40px;  
+        height: 40px;
     }
 }
+.user-profile {
+    position: relative; /
+}
+
+.profile-icon {
+    cursor: pointer; 
+}
+
+.dropdown-menu {
+    display: none; 
+    position: absolute; 
+    top: 60px;
+    right: 0; 
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; 
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f0f0f0;
+    color: #007BFF;
+}
+
+.form-container {
+    max-width: 250px;
+    margin: 30px auto;
+    background-color: #4673D3;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #27496d;
+}
+.form-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #27496d;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #27496d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-container button:hover {
+    background-color: #1d3d57;
+}
+.form-container .form-group {
+    margin-bottom: 15px;
+    height: 50px;
+}
+
+
+.form-group {
+    display: flex;
+    justify-content: center; 
+    background-color: #C2D9FF;
+    border-radius: 5px;
+    max-width: 250px;
+    margin: 0 auto;
+    padding: 10px;
+}
+.form-group label {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #27496d;
+}
+.form-group input[type="checkbox"] {
+    margin-left: 10px; 
+    transform: scale(1.2);
+}
+
+.form-group select {
+    width: 50%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.form-link {
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
+    width: 100%;  
+    margin: 10px 0;  
+}
+
+.form-link input {
+    background-color: #ffffff;  
+    width: 80%;  
+    padding: 10px;  
+    border-radius: 5px; 
+    border: 2px solid #27496d;
+    color: black;  
+    font-size: 16px;  
+}
+
+.form-link input:focus {
+    border-color: #91BBFF;  
+    outline: none;  
+}
+
+
+
+
