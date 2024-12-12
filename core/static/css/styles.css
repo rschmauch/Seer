@@ -132,6 +132,26 @@ header .user-profile img {
         width: 100%; 
     }
 }
+
+.form-container.form-large {
+    max-width : 70%;
+    width : 70%;
+}
+
+.form-large label{
+    margin-right: 10px;
+}
+
+.form-container.form-large ul {
+    max-width : 90%;
+    width : 90%;
+}
+
+.form-container.form-large li {
+    max-width : 90%;
+    justify-content: left;
+}
+
 .form-container h2 {
     text-align: center;
     font-size: 24px;
@@ -142,6 +162,7 @@ header .user-profile img {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
+    margin-right: 10px;
     color: #27496d;
 }
 
