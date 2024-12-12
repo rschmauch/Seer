@@ -25,17 +25,14 @@
 
             <div class="form-group">
                 <label for="language">Langue préférée
-                    <select id="language" name="language" required>
-                        <option value="fr">Français</option>
-                        <option value="en">Anglais</option>
-                    </select>
+                    {% include "../components/select.html" with name="language" list=LANGUAGES %}
                 </label>
             </div>
 
             <div class="form-group">
-                <label for="constraste">
+                <label for="contraste">
                     Mise en contraste
-                    <input type="checkbox" id="constraste" name="constraste">
+                    {% include "../components/select.html" with name="contraste" list=COLORS %}
                 </label>
             </div>
 

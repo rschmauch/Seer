@@ -7,10 +7,10 @@ COLORS = [{"name":"ry","display": "Red and Yellow"},{"name":"rb","display": "Red
 LANGUAGES = [{"name":"en","display": "English"},{"name":"fr","display": "Français"}]
 
 def view_accueil(request: HttpRequest):
-    return render(request, './page/acceuil.html') 
+    return render(request, './page/acceuil.html', {"COLORS": COLORS,"LANGUAGES": LANGUAGES}) 
 
 def view_history(request: HttpRequest):
-    return render(request, './page/history.html') 
+    return render(request, './page/history.html', {"COLORS": COLORS,"LANGUAGES": LANGUAGES}) 
 
 def view_parametres(request: HttpRequest):
     return render(request, './page/parametres.html',{"COLORS": COLORS,"LANGUAGES": LANGUAGES} )
@@ -19,5 +19,5 @@ def view_scraping(request):
     if request.method == 'POST':
         url = request.POST.get('link')
         contenu = contenu_site(url)
-        return render(request, 'page/acceuil.html', {'contenu': contenu})
+        return render(request, 'page/acceuil.html', {'contenu': contenu, "COLORS": COLORS,"LANGUAGES": LANGUAGES})
     return redirect('view_accueil')
