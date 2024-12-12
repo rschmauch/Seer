@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import view_accueil
+from core.views import view_accueil, view_scraping
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', view_accueil, name='accueil'),  # Page d'accueil
+    path('scrape/', view_scraping, name='view_scraping'),
 ]
