@@ -1,8 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-# import sys
-# Configurer la sortie pour UTF-8
-# sys.stdout.reconfigure(encoding='utf-8')
 
 def contenu_site(url):
     try:
@@ -16,14 +13,21 @@ def contenu_site(url):
         # Récupérer tous les éléments textuels dans l'ordre
         elements = soup.find_all(['h1', 'h2', 'h3', 'p', 'li', 'a'])
 
-        print("\nContenu du site dans l'ordre :\n")
+        # Créer une liste de dictionnaires avec les éléments
+        contenu = []
         for element in elements:
             text = element.get_text(strip=True)
             if text:  # Ignorer les éléments sans texte
-                print(f"{element.name.upper()}: {text}")
+                contenu.append({
+                    'name': element.name.upper(),
+                    'text': text
+                })
+        
+        return contenu
     
     except requests.exceptions.RequestException as e:
         print(f"Erreur lors de la requête : {e}")
+        return []
     
 # url_demo = 'https://www.francetvinfo.fr/'
 # contenu_site(url_demo)

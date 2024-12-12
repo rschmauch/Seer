@@ -9,7 +9,7 @@
 {% block content %}
 <div class="container">
     <div class="form-container">
-        <form action="" method="POST">
+        <form action="{% url 'view_scraping' %}" method="POST">
             <div class="form-link">
                 <input type="url" id="link" name="link" placeholder="https://example.com" required>
             </div>
@@ -18,7 +18,7 @@
             
             <div class="form-group">
                 <label for="convertion">
-                    Convertion en texte
+                    Conversion en texte
                     <input type="checkbox" id="convertion" name="convertion">
                 </label>
             </div>
@@ -28,26 +28,32 @@
                     <select id="language" name="language" required>
                         <option value="fr">Français</option>
                         <option value="en">Anglais</option>
+                    </select>
                 </label>
-                </select>
             </div>
 
             <div class="form-group">
                 <label for="constraste">
-                    Mise en constraste
+                    Mise en contraste
                     <input type="checkbox" id="constraste" name="constraste">
                 </label>
             </div>
 
-                <button type="submit">Envoyer</button>
+            <button type="submit">Envoyer</button>
         </form>
-        
     </div>
+    
+    {% if contenu %}
     <div class="output">
-        <p>Résultats affichés ici</p>
-
+        {% for element in contenu %}
+            <p><strong>{{ element.name }}</strong>: {{ element.text }}</p>
+        {% endfor %}
     </div>
+    {% else %}
+        <div class="output">
+            <p>Aucun résultat à afficher</p>
+        </div>
+    {% endif %}
 
 </div>
-
 {% endblock %}
