@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from core.scraping.scraping_functionality import contenu_site
 
