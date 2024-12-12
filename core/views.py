@@ -5,3 +5,6 @@ from django.http import HttpRequest
 def view_accueil(request: HttpRequest):
     return render(request, './page/acceuil.html') 
 
+def view_history(request: HttpRequest):
+    return render(request, './page/history.html') 
+

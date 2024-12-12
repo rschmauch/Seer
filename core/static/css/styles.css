@@ -219,6 +219,58 @@ header .user-profile img {
     outline: none;  
 }
 
+/* ------------------- History ---------------- */
+
+.content-history {
+    max-width: 1000px; /* Limite la largeur maximale */
+    margin: 30px auto; /* Centre le contenu horizontalement */
+    background-color: #4673D3;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #fff;
+    height: auto; /* Ajuste la hauteur automatiquement */
+}
+
+/* Texte à gauche pour grand écran */
+.content-history h2,
+.content-history p {
+    text-align: left;
+}
+
+/* Style pour tablettes (768px ou moins) */
+@media screen and (max-width: 768px) {
+    .content-history {
+        max-width: 90%; /* Réduit la largeur pour s'adapter aux écrans plus petits */
+        padding: 15px; /* Réduit les marges internes */
+    }
+
+    .content-history h2 {
+        font-size: 1.5rem; /* Taille de police adaptée */
+    }
+
+    .content-history p {
+        font-size: 1rem; /* Texte un peu plus petit */
+    }
+}
+
+/* Style pour mobiles (480px ou moins) */
+@media screen and (max-width: 480px) {
+    .content-history {
+        max-width: 95%; /* Presque toute la largeur de l'écran */
+        padding: 10px; /* Réduction des marges internes */
+    }
+
+    .content-history h2 {
+        font-size: 1.2rem; /* Ajustement de la taille des titres */
+    }
+
+    .content-history p {
+        font-size: 0.9rem; /* Texte encore plus petit pour les très petits écrans */
+    }
+}
+
 
 
 

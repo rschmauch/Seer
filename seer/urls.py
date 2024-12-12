@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import view_accueil
+from core.views import view_accueil, view_history
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', view_accueil, name='accueil'),  # Page d'accueil
+    path('', view_accueil, name='accueil'), 
+    path('history/', view_history, name='history'),
 ]
