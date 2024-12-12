@@ -4,30 +4,31 @@
 {% block content_title %}Paramètres{% endblock %} 
 
 {% block content %}
-    <div>
+    <div class="form-container form-large">
         <form action="/ma-page-de-traitement" method="post">
             <ul>
-              <li>
-                <label for="mail">Email</label>
+              <li class="form-group">
+                <label for="mail">Email : </label>
                 <input type="email" id="mail" name="user_mail" />
               </li>
-              <li>
-                <label for="password">Mot de passe</label>
+              <li class="form-group">
+                <label for="password">Mot de passe : </label>
                 <input type="password" id="password" name="user_password" />
               </li>
-              <li>
-                <label for="language">Language par défaut</label>
+              <li class="form-group">
+                <label for="language">Language par défaut : </label>
                 {% include "../components/select.html" with name="language" list=LANGUAGES %}
               </li>
-              <li>
-                <label for="constrast">Contraste</label>
+              <li class="form-group">
+                <label for="constrast">Contraste : </label>
                 {% include "../components/select.html" with name="contraste" list=COLORS %}
               </li>
-              <li>
-                <label for="textmode">Mode texte seulement</label>
+              <li class="form-group">
+                <label for="textmode">Mode texte seulement : </label>
                 <input type="checkbox" id="textmode" name="textmode"/>
               </li>
             </ul>
+            <button type="submit">Valider</button>
           </form>          
     </div>
 {% endblock %}
