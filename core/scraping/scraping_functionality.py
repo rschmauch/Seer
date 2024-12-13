@@ -17,17 +17,16 @@ def contenu_site(url):
         contenu = []
         for element in elements:
             text = element.get_text(strip=True)
+            
+            # Vérifier que le texte n'est pas vide et qu'il est valide
             if text:  # Ignorer les éléments sans texte
                 contenu.append({
-                    'name': element.name.upper(),
+                    'name': element.name.upper(),  # Par exemple, 'H1', 'P'
                     'text': text
                 })
-        
+
         return contenu
-    
+
     except requests.exceptions.RequestException as e:
         print(f"Erreur lors de la requête : {e}")
         return []
-    
-# url_demo = 'https://www.francetvinfo.fr/'
-# contenu_site(url_demo)
