@@ -1,2 +1,3 @@
 *.pyc
-/__pycache__
+/core/__pycache__
+/seer/__pycache__
