@@ -34,6 +34,6 @@ def view_scraping(request):
                     except Exception as e:
                         print(f"Erreur de traduction pour {element['text']}: {e}")
         
-        return render(request, 'page/acceuil.html', {'contenu': contenu})
+        return render(request, 'page/acceuil.html', {'contenu': contenu,"COLORS": COLORS,"LANGUAGES": LANGUAGES})
     
     return redirect('view_accueil')
