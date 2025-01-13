@@ -1,3 +1,5 @@
 *.pyc
 /core/__pycache__
 /seer/__pycache__
+media/
+media/*

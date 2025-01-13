@@ -6,6 +6,7 @@ from core.scraping.scraping_functionality import contenu_site
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.conf import settings 
 
 COLORS = [{"name":"ry","display": "Red and Yellow"},{"name":"rb","display": "Red and Blue"}]
 LANGUAGES = [{"name":"en","display": "English"},{"name":"fr","display": "Français"},{"name":"de","display": "Deutsch"}]
@@ -29,23 +30,26 @@ def view_acceuil_user(request: HttpRequest):
 def view_scraping(request):
     if request.method == 'POST':
         url = request.POST.get('link')
-        language = request.POST.get('language', 'fr') 
+        language = request.POST.get('language', 'fr')
 
         # Scraping du contenu
-        contenu = contenu_site(url)
-        
+        contenu = contenu_site(url, settings.MEDIA_ROOT)
         
         if contenu:
             for element in contenu:
-                if element.get('text'):  
+                if element.get('text') and element.get('type') == 'text':
                     try:
-                        # Effectuer la traduction avec Google Translator via deep_translator
                         translated_text = GoogleTranslator(source='auto', target=language).translate(element['text'])
-                        element['text'] = translated_text  # Remplacer le texte original par la traduction
+                        element['text'] = translated_text
                     except Exception as e:
                         print(f"Erreur de traduction pour {element['text']}: {e}")
         
-        return render(request, 'page/acceuil.html', {'contenu': contenu,"COLORS": COLORS,"LANGUAGES": LANGUAGES})
+        return render(request, './page/acceuil.html', {
+            'contenu': contenu,
+            'COLORS': COLORS,
+            'LANGUAGES': LANGUAGES,
+            'MEDIA_URL': settings.MEDIA_URL
+        })
     
     return redirect('view_accueil')
 
@@ -84,3 +88,4 @@ def login_user(request):
             return redirect("login_user")  # Recharge la page de connexion pour afficher l'erreur
 
     return render(request, "page/login.html")
+    return redirect('accueil')
