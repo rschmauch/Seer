@@ -4,7 +4,7 @@ from django.http import HttpRequest
 from core.scraping.scraping_functionality import contenu_site
 
 COLORS = [{"name":"ry","display": "Red and Yellow"},{"name":"rb","display": "Red and Blue"}]
-LANGUAGES = [{"name":"en","display": "English"},{"name":"fr","display": "Français"}]
+LANGUAGES = [{"name":"en","display": "English"},{"name":"fr","display": "Français"},{"name":"de","display": "Deutsch"}]
 
 def view_accueil(request: HttpRequest):
     return render(request, './page/acceuil.html', {"COLORS": COLORS,"LANGUAGES": LANGUAGES}) 
@@ -14,6 +14,9 @@ def view_history(request: HttpRequest):
 
 def view_parametres(request: HttpRequest):
     return render(request, './page/parametres.html',{"COLORS": COLORS,"LANGUAGES": LANGUAGES} )
+
+def view_login(request: HttpRequest):
+    return render(request, './page/login.html',{"COLORS": COLORS,"LANGUAGES": LANGUAGES} )
 
 def view_scraping(request):
     if request.method == 'POST':

@@ -12,3 +12,12 @@ window.onclick = function(event) {
         menu.style.display = "none";
     }
 };
+
+
+function openPopup() {
+    document.getElementById("register-popup").style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById("register-popup").style.display = "none";
+}

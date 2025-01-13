@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Page de login{% endblock %}
+
+{% block content_title %}
+    <h1>Bienvenue sur la page d'accueil</h1>
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2>Connexion</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="login-group">
+            <label for="username">Nom d'utilisateur :</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="login-group">
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="login-button">Se connecter</button>
+    </form>
+    <div class="login-link">
+        <p>Pas encore de compte ? <a href="#" class="register-link" onclick="openPopup()">Créer un compte</a></p>
+    </div>
+    
+</div>
+
+<!-- Pop-up pour la création de compte -->
+<div id="register-popup" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <h2>Créer un compte</h2>
+        <form method="post" >
+            {% csrf_token %}
+            <div class="login-group">
+                <label for="new-username">Nom d'utilisateur :</label>
+                <input type="text" id="new-username" name="username" required>
+            </div>
+            <div class="login-group">
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="login-group">
+                <label for="new-password">Mot de passe :</label>
+                <input type="password" id="new-password" name="password" required>
+            </div>
+            <button type="submit" class="login-button">Créer un compte</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
