@@ -17,13 +17,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core.views import view_accueil, view_history, view_parametres, view_scraping, view_login
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', view_accueil, name='accueil'),
-    path('parametres', view_parametres, name='parmetres'),  # Page des paramètres
+    path('parametres', view_parametres, name='parmetres'),
     path('history/', view_history, name='history'),
     path('scrape/', view_scraping, name='view_scraping'),
     path('login/', view_login, name='view_login'),
 
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
