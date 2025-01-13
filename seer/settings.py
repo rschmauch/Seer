@@ -83,6 +83,9 @@ DATABASES = {
     }
 }
 
+LOGIN_URL = 'login_user'  # Nom de l'URL pour la page de connexion
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

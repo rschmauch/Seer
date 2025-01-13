@@ -21,3 +21,5 @@ function openPopup() {
 function closePopup() {
     document.getElementById("register-popup").style.display = "none";
 }
+
+

@@ -9,7 +9,7 @@
 {% block content %}
 <div class="login-container">
     <h2>Connexion</h2>
-    <form method="post">
+    <form method="post" action="{% url 'login_user' %}">
         {% csrf_token %}
         <div class="login-group">
             <label for="username">Nom d'utilisateur :</label>
@@ -21,18 +21,22 @@
         </div>
         <button type="submit" class="login-button">Se connecter</button>
     </form>
+
     <div class="login-link">
         <p>Pas encore de compte ? <a href="#" class="register-link" onclick="openPopup()">Créer un compte</a></p>
     </div>
-    
 </div>
+
+
+
 
 <!-- Pop-up pour la création de compte -->
 <div id="register-popup" class="popup">
     <div class="popup-content">
         <span class="close-btn" onclick="closePopup()">&times;</span>
         <h2>Créer un compte</h2>
-        <form method="post" >
+        <form method="post" action="{% url 'register_user' %}">
+
             {% csrf_token %}
             <div class="login-group">
                 <label for="new-username">Nom d'utilisateur :</label>
@@ -50,4 +54,15 @@
         </form>
     </div>
 </div>
+
+{% comment %} message d'alert pour la création de compte {% endcomment %}
+{% if messages %}
+    <script type="text/javascript">
+        {% for message in messages %}
+            alert("{{ message|safe }}");
+        {% endfor %}
+    </script>
+{% endif %}
+
+
 {% endblock %}
