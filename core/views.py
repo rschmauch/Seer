@@ -31,7 +31,6 @@ def view_scraping(request):
     if request.method == 'POST':
         url = request.POST.get('link')
         language = request.POST.get('language', 'fr')
-        language = request.POST.get('language', 'fr')
 
         # Scraping du contenu
         contenu = contenu_site(url, settings.MEDIA_ROOT)
@@ -40,10 +39,8 @@ def view_scraping(request):
         if contenu:
             for element in contenu:
                 if element.get('text') and element.get('type') == 'text':
-                if element.get('text') and element.get('type') == 'text':
                     try:
                         translated_text = GoogleTranslator(source='auto', target=language).translate(element['text'])
-                        element['text'] = translated_text
                         element['text'] = translated_text
                     except Exception as e:
                         print(f"Erreur de traduction pour {element['text']}: {e}")
@@ -54,15 +51,8 @@ def view_scraping(request):
             'LANGUAGES': LANGUAGES,
             'MEDIA_URL': settings.MEDIA_URL
         })
-        return render(request, './page/acceuil.html', {
-            'contenu': contenu,
-            'COLORS': COLORS,
-            'LANGUAGES': LANGUAGES,
-            'MEDIA_URL': settings.MEDIA_URL
-        })
     
     return redirect('view_accueil')
-
 
 def register_user(request):
     if request.method == "POST":
@@ -98,4 +88,3 @@ def login_user(request):
             return redirect("login_user")  # Recharge la page de connexion pour afficher l'erreur
 
     return render(request, "page/login.html")
-    return redirect('accueil')
