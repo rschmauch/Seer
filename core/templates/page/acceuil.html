@@ -40,15 +40,7 @@
    
     {% if contenu %}
     <div class="output">
-        {% for element in contenu %}
-            {% if element.type == 'text' %}
-                <p><strong>{{ element.name }}</strong>: {{ element.text }}</p>
-            {% elif element.type == 'image' %}
-                <div class="image-container">
-                    <img src="{{ MEDIA_URL }}{{ element.src }}" alt="{{ element.alt }}" class="scraped-image">
-                </div>
-            {% endif %}
-        {% endfor %}
+        {{ contenu }}
     </div>
     {% else %}
         <div class="output">
