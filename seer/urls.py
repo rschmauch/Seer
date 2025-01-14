@@ -21,12 +21,12 @@ from core.views import view_accueil, view_history, view_parametres, view_scrapin
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', view_accueil, name='accueil'),
-    path('parametres', view_parametres, name='parmetres'),  # Page des paramètres
+    path('parametres', view_parametres, name='parmetres'),  
     path('history/', view_history, name='history'),
     path('scrape/', view_scraping, name='view_scraping'),
     path('login_page/', view_login, name='view_login'),
     path('register/', register_user, name='register_user'),
-    path('login/', login_user, name='login_user'),  # Vue pour la connexion
+    path('login/', login_user, name='login_user'),  
     path('acceuil_user/', view_acceuil_user, name='view_acceuil_user'), 
 
 ]
