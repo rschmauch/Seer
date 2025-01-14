@@ -49,9 +49,7 @@
     
     {% if contenu %}
     <div class="output">
-        {% for element in contenu %}
-            <p><strong>{{ element.name }}</strong>: {{ element.text }}</p>
-        {% endfor %}
+        {{ contenu }}
     </div>
     {% else %}
         <div class="output">
