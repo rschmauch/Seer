@@ -34,7 +34,6 @@ def view_scraping(request):
 
         # Scraping du contenu
         contenu = contenu_site(url, settings.MEDIA_ROOT)
-        contenu = contenu_site(url, settings.MEDIA_ROOT)
         
         if contenu:
             for element in contenu:
