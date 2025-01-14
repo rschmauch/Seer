@@ -1,9 +1,8 @@
 import sys
-from core.ai.env import OPENAI_API_KEY
 from openai import OpenAI
 import time as t
 
-client = OpenAI(api_key=OPENAI_API_KEY)
+client = OpenAI()
 assistants = {"Seer_resume" : "asst_Gok4cxceSXmNfNDIWBwWc4Yq", "Seer_img" : "6BtoIKz3hnfjGkVmT8JCMb7c"}
 
 def newAiThread():

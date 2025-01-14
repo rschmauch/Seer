@@ -71,46 +71,52 @@ def view_scraping(request):
 @login_required
 def view_scraping_user(request):
     if request.method == 'POST':
-       
         user = request.user
-        
         url = request.POST.get('link')
-        language = request.POST.get('language', 'fr')  
-        
+        language = request.POST.get('language', 'fr')
+
         # Scraping du contenu
-        contenu = contenu_site(url)
-        
+        contenu = contenu_site(url, settings.MEDIA_ROOT)
+
+        text = ""
         if contenu:
             for element in contenu:
-                if element.get('text'):  
-                    try:
-                        
-                        translated_text = GoogleTranslator(source='auto', target=language).translate(element['text'])
-                        element['text'] = translated_text  # Remplacer le texte original par la traduction
-                    except Exception as e:
-                        print(f"Erreur de traduction pour {element['text']}: {e}")
-        
-        
-        content_text = "\n".join([f"{item['name']}: {item['text']}" for item in contenu])
-        
+                if element.get('text'): 
+                    text += f"{element['name']} : {element['text']}\n"
+
+        # Traitement par IA:
+        thread = newAiThread()
+        contenu_traduit = ""
+        try:
+            contenu_ai = askAIfor(text, thread)
+
+            # Traduction du contenu
+            contenu_traduit = GoogleTranslator(source='auto', target=language).translate(contenu_ai)
+        except Exception as e:
+            print(f"Erreur lors du traitement ou de la traduction : {e}")
+            contenu_traduit = "Erreur lors du traitement ou de la traduction."
+
         # Enregistrer les données dans la table History
-        if url:
-            History.objects.create(
-                user=user,
-                link=url,
-                content=content_text,
-                date=now()
-            )
-        
-        #
+        if url and user.is_authenticated:
+            try:
+                History.objects.create(
+                    user=user,
+                    link=url,
+                    content=contenu_traduit,  # Enregistrer le contenu traduit
+                    date=now()
+                )
+            except Exception as e:
+                print(f"Erreur lors de l'enregistrement dans History : {e}")
+
         return render(request, 'page/acceuil_user.html', {
-            'contenu': contenu,
+            'contenu': contenu_traduit,
             'COLORS': COLORS,
-            'LANGUAGES': LANGUAGES
+            'LANGUAGES': LANGUAGES,
+            'MEDIA_URL': settings.MEDIA_URL
         })
     
-    
-    return redirect('view_acceuil_user')
+    return redirect('view_accueil_user')
+
 
 def register_user(request):
     if request.method == "POST":
