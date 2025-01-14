@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} <!-- Ajoute cette ligne pour charger le tag static -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,12 +15,12 @@
         </div>
 
         <div class="user-profile">
-            <img src="{% static 'images/utilisateur.png' %}" alt="Profile Icon" class="profile-icon" onclick="toggleMenu()">
-            <div class="dropdown-menu" id="dropdownMenu">
-                <a href="/login_page">Connexion</a>
-                <a href="/parametres">Paramètres</a>
-                <a href="/historique">Historique</a>
-            </div>
+            {% block user_profile %}
+                <img src="{% static 'images/utilisateur.png' %}" alt="Profile Icon" class="profile-icon" onclick="toggleMenu()">
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="/login_page">Connexion</a>
+                </div>
+            {% endblock %}
         </div>
     </header>
 

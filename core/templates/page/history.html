@@ -1,12 +1,44 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Historique{% endblock %}
 
-
+{% block user_profile %}
+    <img src="{% static 'images/utilisateur.png' %}" alt="Profile Icon" class="profile-icon" onclick="toggleMenu()">
+    <div class="dropdown-menu" id="dropdownMenu">
+        <p>Bienvenue, <strong>{{ user.username }}</strong></p>
+        <a href="/parametres">Paramètres</a>
+        <a href="/history">Historique</a>
+        <a href="/login_page">Déconnexion</a>
+    </div>
+{% endblock %}
 
 {% block content %}
+<div class="content-history">
+    <h2>Historique</h2>
 
-    <div class="content-history">
-        <h2>Historique</h2>
-        <p>Ici contenu history.</p>
+    <div class="history-container">
+        {% if user_history %}
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Lien</th>
+                        <th>Date</th>
+                        <th>Contenu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in user_history %}
+                        <tr>
+                            <td><a href="{{ item.link }}" target="_blank">{{ item.link }}</a></td>
+                            <td>{{ item.date|date:"d/m/Y H:i" }}</td>
+                            <td>{{ item.content|truncatechars:150 }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Aucun historique disponible pour le moment.</p>
+        {% endif %}
     </div>
+</div>
 {% endblock %}

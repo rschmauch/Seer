@@ -16,20 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import view_accueil, view_history, view_parametres, view_scraping, view_login, register_user,view_acceuil_user, login_user
+from core.views import view_accueil, view_history, view_parametres, view_scraping, view_login, register_user,view_acceuil_user, login_user,view_scraping_user
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', view_accueil, name='accueil'),
-    path('parametres', view_parametres, name='parmetres'),
+    path('parametres', view_parametres, name='parmetres'),  # Page des paramètres
     path('history/', view_history, name='history'),
     path('scrape/', view_scraping, name='view_scraping'),
+    path('scraping_user/', view_scraping_user, name='view_scraping_user'),
     path('login_page/', view_login, name='view_login'),
     path('register/', register_user, name='register_user'),
-    path('login/', login_user, name='login_user'),  # Vue pour la connexion
+    path('login/', login_user, name='login_user'),  
     path('acceuil_user/', view_acceuil_user, name='view_acceuil_user'), 
+    path('history/', view_history, name='view_history'),
 
 ]
 
@@ -37,5 +39,3 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
