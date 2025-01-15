@@ -36,9 +36,9 @@ def view_scraping(request):
     if request.method == 'POST':
         url = request.POST.get('link')
         language = request.POST.get('language', 'fr')
+        contraste = request.POST.get('contraste')  # Récupérer le contraste
 
         # Scraping du contenu
-
         contenu = contenu_site(url, settings.MEDIA_ROOT)
 
         text = ""
@@ -50,21 +50,19 @@ def view_scraping(request):
         # Traitement par IA:
         thread = newAiThread()
         contenu = askAIfor(text,thread)
-        
-        
 
         try:
-        # Effectuer la traduction avec Google Translator via deep_translator
+            # Effectuer la traduction avec Google Translator via deep_translator
             contenu = GoogleTranslator(source='auto', target=language).translate(contenu)
         except Exception as e:
-            print(f"Erreur de traduction pour {element['text']}: {e}")
+            print(f"Erreur de traduction : {e}")
 
-        
         return render(request, './page/acceuil.html', {
             'contenu': contenu,
             'COLORS': COLORS,
             'LANGUAGES': LANGUAGES,
-            'MEDIA_URL': settings.MEDIA_URL
+            'MEDIA_URL': settings.MEDIA_URL,
+            'contraste': contraste  # Passer le contraste au template
         })
     
     return redirect('view_accueil')
@@ -74,6 +72,7 @@ def view_scraping_user(request):
         user = request.user
         url = request.POST.get('link')
         language = request.POST.get('language', 'fr')
+        contraste = request.POST.get('contraste')
 
         # Scraping du contenu
         contenu = contenu_site(url, settings.MEDIA_ROOT)
@@ -112,7 +111,8 @@ def view_scraping_user(request):
             'contenu': contenu_traduit,
             'COLORS': COLORS,
             'LANGUAGES': LANGUAGES,
-            'MEDIA_URL': settings.MEDIA_URL
+            'MEDIA_URL': settings.MEDIA_URL,
+            'contraste': contraste
         })
     
     return redirect('view_accueil_user')

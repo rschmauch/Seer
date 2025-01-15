@@ -545,3 +545,33 @@ header .user-profile img {
 .history-container {
     overflow-x: auto;
 }
+
+.contrast-rb {
+    background-color: #000080 !important; /* Bleu foncé */
+    color: #ffffff !important;
+}
+
+.contrast-rb .form-group {
+    background-color: #000040 !important;
+    color: #ffffff !important;
+}
+
+.contrast-rb .output {
+    background-color: #000040 !important;
+    color: #ffffff !important;
+}
+
+.contrast-ry {
+    background-color: #FFD700 !important; /* Jaune */
+    color: #FF0000 !important; /* Rouge */
+}
+
+.contrast-ry .form-group {
+    background-color: #FFA500 !important;
+    color: #FF0000 !important;
+}
+
+.contrast-ry .output {
+    background-color: #FFA500 !important;
+    color: #FF0000 !important;
+}

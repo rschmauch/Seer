@@ -4,7 +4,7 @@
     <h1>Bienvenue sur la page d'accueil</h1>
 {% endblock %}
 {% block content %}
-<div class="container">
+<div class="container {% if contraste %}contrast-{{ contraste }}{% endif %}">
     <div class="form-container">
 <form action="{% url 'view_scraping' %}" method="POST">
     <div class="form-link">
@@ -39,11 +39,11 @@
     </div>
    
     {% if contenu %}
-    <div class="output">
+    <div class="output {% if contraste %}contrast-{{ contraste }}{% endif %}">
         {{ contenu }}
     </div>
     {% else %}
-        <div class="output">
+        <div class="output {% if contraste %}contrast-{{ contraste }}{% endif %}">
             <p>Aucun résultat à afficher</p>
         </div>
     {% endif %}

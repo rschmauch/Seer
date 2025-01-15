@@ -44,22 +44,13 @@ def contenu_site(url, media_root):
                     'text': text
                 })
 
-        # Récupérer les images
+        # Sauvegarder les images même si on ne les affiche pas
         images = soup.find_all('img')
         for img in images:
             src = img.get('src')
             if src:
-                # Convertir l'URL relative en URL absolue
                 img_url = urljoin(url, src)
-                # Sauvegarder l'image
-                saved_path = save_image(img_url, media_root)
-                if saved_path:
-                    contenu.append({
-                        'type': 'image',
-                        'name': 'IMG',
-                        'src': saved_path,
-                        'alt': img.get('alt', '')
-                    })
+                save_image(img_url, media_root)
 
         return contenu
 

@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block title %}Accueil de l'utilisateur{% endblock %}
@@ -19,9 +18,9 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container {% if contraste %}contrast-{{ contraste }}{% endif %}">
     <div class="form-container">
-<form action="{% url 'view_scraping_user' %}" method="POST">
+        <form action="{% url 'view_scraping_user' %}" method="POST">
     <div class="form-link">
         <input type="url" id="link" name="link" placeholder="https://example.com" required>
     </div>
@@ -56,18 +55,16 @@
 
     <button type="submit">Envoyer</button>
 </form>
+</div>
 
+{% if contenu %}
+<div class="output {% if contraste %}contrast-{{ contraste }}{% endif %}">
+    {{ contenu }}
+</div>
+{% else %}
+    <div class="output {% if contraste %}contrast-{{ contraste }}{% endif %}">
+        <p>Aucun résultat à afficher</p>
     </div>
-    
-    {% if contenu %}
-    <div class="output">
-        {{ contenu }}
-    </div>
-    {% else %}
-        <div class="output">
-            <p>Aucun résultat à afficher</p>
-        </div>
-    {% endif %}
-
+{% endif %}
 </div>
 {% endblock %}
