@@ -22,8 +22,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', view_accueil, name='accueil'),
-    path('parametres', view_parametres, name='parmetres'),  # Page des paramètres
+    path('', view_accueil, name='view_accueil'),
+    path('parametres', view_parametres, name='parmetres'),  
     path('history/', view_history, name='history'),
     path('scrape/', view_scraping, name='view_scraping'),
     path('scraping_user/', view_scraping_user, name='view_scraping_user'),

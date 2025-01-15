@@ -2,6 +2,8 @@
 {% load static %}
 {% block title %}Historique{% endblock %}
 
+{% block logo_link %}{% url 'view_acceuil_user' %}{% endblock %}
+
 {% block user_profile %}
     <img src="{% static 'images/utilisateur.png' %}" alt="Profile Icon" class="profile-icon" onclick="toggleMenu()">
     <div class="dropdown-menu" id="dropdownMenu">

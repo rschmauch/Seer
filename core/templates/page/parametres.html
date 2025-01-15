@@ -1,7 +1,20 @@
 {% extends 'base.html' %}  
+{% load static %}
 {% block title %}Paramètres{% endblock %}  
 
 {% block content_title %}Paramètres{% endblock %} 
+
+{% block logo_link %}{% url 'view_acceuil_user' %}{% endblock %}
+
+{% block user_profile %}
+    <img src="{% static 'images/utilisateur.png' %}" alt="Profile Icon" class="profile-icon" onclick="toggleMenu()">
+    <div class="dropdown-menu" id="dropdownMenu">
+        <p>Bienvenue, <strong>{{ user.username }}</strong></p>
+        <a href="/parametres">Paramètres</a>
+        <a href="/history">Historique</a>
+        <a href="/login_page">Déconnexion</a>
+    </div>
+{% endblock %}
 
 {% block content %}
     <div class="form-container form-large">
