@@ -26,15 +26,15 @@
     <button type="submit">Envoyer</button>
 </form>
     </div>
-   
-    {% if contenu %}
-    <div class="output">
-        {{ contenu }}
+    
+{% if contenu %}
+<div class="output {% if contraste %}contrast-{{ contraste }}{% endif %}">
+    {{ contenu }}
+</div>
+{% else %}
+    <div class="output {% if contraste %}contrast-{{ contraste }}{% endif %}">
+        <p>Aucun résultat à afficher</p>
     </div>
-    {% else %}
-        <div class="output">
-            <p>Aucun résultat à afficher</p>
-        </div>
-    {% endif %}
+{% endif %}
 </div>
 {% endblock %}

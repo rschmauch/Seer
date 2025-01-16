@@ -48,16 +48,15 @@
 </form>
 
     </div>
-    
-    {% if contenu %}
-    <div class="output">
-        {{ contenu }}
-    </div>
-    {% else %}
-        <div class="output">
-            <p>Aucun résultat à afficher</p>
-        </div>
-    {% endif %}
 
+{% if contenu %}
+<div class="output {% if contraste %}contrast-{{ contraste }}{% endif %}">
+    {{ contenu }}
+</div>
+{% else %}
+    <div class="output {% if contraste %}contrast-{{ contraste }}{% endif %}">
+        <p>Aucun résultat à afficher</p>
+    </div>
+{% endif %}
 </div>
 {% endblock %}

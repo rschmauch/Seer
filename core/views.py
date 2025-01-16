@@ -42,11 +42,9 @@ def view_scraping(request):
     if request.method == 'POST':
         url = request.POST.get('link')
         language = request.POST.get('language', 'fr')
-
-        # Scraping du contenu
+        contraste = request.POST.get('contraste')
 
         contenu = contenu_site(url, settings.MEDIA_ROOT)
-
         thread = newAiThread()
 
         text = ""
@@ -55,30 +53,26 @@ def view_scraping(request):
                 if element['type'] == "image":
                     if (element['src'][-3:] == "png") or (element['src'][-4:] == "jpeg"):
                         if element['alt'] == "":
-                            img = "prout" #askAIfor(element['src'],thread,type="img")
+                            img = "prout"
                         else:
                             img = element['alt']
                         text = text+"Img:"+img+"\n"
                 elif element.get('text'): 
                     text = text+element['name']+":"+element['text']+"\n"
 
-        # Traitement par IA:
         contenu = askAIfor(text,thread)
-        
-        
 
         try:
-        # Effectuer la traduction avec Google Translator via deep_translator
             contenu = GoogleTranslator(source='auto', target=language).translate(contenu)
         except Exception as e:
             print(f"Erreur de traduction pour {contenu}: {e}")
 
-        
         return render(request, './page/acceuil.html', {
             'contenu': contenu,
             'COLORS': COLORS,
             'LANGUAGES': LANGUAGES,
-            'MEDIA_URL': settings.MEDIA_URL
+            'MEDIA_URL': settings.MEDIA_URL,
+            'contraste': contraste
         })
     
     return redirect('view_accueil')
@@ -88,6 +82,7 @@ def view_scraping_user(request):
     if request.method == 'POST':
         url = request.POST.get('link')
         language = request.POST.get('language', 'fr')  # Par défaut, le français
+        contraste = request.POST.get('contraste')
 
         # Scraping du contenu
         contenu = contenu_site(url, settings.MEDIA_ROOT)
@@ -127,7 +122,8 @@ def view_scraping_user(request):
             'contenu': contenu,
             'COLORS': COLORS,
             'LANGUAGES': LANGUAGES,
-            'MEDIA_URL': settings.MEDIA_URL
+            'MEDIA_URL': settings.MEDIA_URL,
+            'contraste': contraste
         })
 
     return redirect('view_acceuil_user')

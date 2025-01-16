@@ -546,3 +546,15 @@ header .user-profile img {
 .history-container {
     overflow-x: auto;
 }
+
+div.output.contrast-rb {
+    background-color: #000080 !important; /* Bleu foncé */
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+div.output.contrast-ry {
+    background-color: #FFD700 !important; /* Jaune */
+    color: #FF0000 !important; /* Rouge */
+    border-color: #FF0000 !important;
+}
