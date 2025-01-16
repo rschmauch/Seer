@@ -1,9 +1,9 @@
-
-
-
-
-    <select name={{name}} id={{name}}>
-        {% for opt in list %}
-        <option value={{opt.name}}>{{opt.display}}</option>
-        {% endfor %}
-    </select>
+<select name="{{ name }}" id="{{ name }}">
+    {% for lang in list %}
+        {% if lang.name == selected %}
+            <option selected="selected" value="{{ lang.name }}">{{ lang.display }}</option>
+        {% else %}
+            <option value="{{ lang.name }}">{{ lang.display }}</option>
+        {% endif %}
+    {% endfor %}
+</select>
