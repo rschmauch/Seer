@@ -1,8 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
 import os
+import shutil
 from urllib.parse import urljoin, urlparse
 import uuid
+
+def clean_scraped_images(base_path):
+    images_dir = os.path.join(base_path, 'scraped_images')
+    if os.path.exists(images_dir):
+        shutil.rmtree(images_dir)  # Supprime le dossier et son contenu
+    os.makedirs(images_dir)  # Recrée le dossier vide
 
 def save_image(url, base_path):
     try:
@@ -28,6 +35,9 @@ def save_image(url, base_path):
 
 def contenu_site(url, media_root):
     try:
+        # Nettoyer le dossier des anciennes images avant de commencer
+        clean_scraped_images(media_root)
+        
         response = requests.get(url)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -44,22 +54,13 @@ def contenu_site(url, media_root):
                     'text': text
                 })
 
-        # Récupérer les images
+        # Sauvegarder les images même si on ne les affiche pas
         images = soup.find_all('img')
         for img in images:
             src = img.get('src')
             if src:
-                # Convertir l'URL relative en URL absolue
                 img_url = urljoin(url, src)
-                # Sauvegarder l'image
-                saved_path = save_image(img_url, media_root)
-                if saved_path:
-                    contenu.append({
-                        'type': 'image',
-                        'name': 'IMG',
-                        'src': saved_path,
-                        'alt': img.get('alt', '')
-                    })
+                save_image(img_url, media_root)
 
         return contenu
 
