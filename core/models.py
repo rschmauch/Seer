@@ -8,9 +8,6 @@ class History(models.Model):
     content = models.TextField()
     date = models.DateTimeField(default=now)
 
-    def __str__(self):
-        return f"Historique de {self.user.username} - {self.date}"
-
 
 class ScrapedContent(models.Model):
     type = models.CharField(max_length=10)  # 'text' ou 'image'
