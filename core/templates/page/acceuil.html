@@ -11,12 +11,6 @@
         <input type="url" id="link" name="link" placeholder="https://example.com" required>
     </div>
     {% csrf_token %}
-    <div class="form-group">
-        <label for="convertion">
-            Conversion en texte
-            <input type="checkbox" id="convertion" name="convertion">
-        </label>
-    </div>
             <div class="form-group">
                 <label for="language">Langue préférée
                     {% include "../components/select.html" with name="language" list=LANGUAGES %}
