@@ -2,14 +2,12 @@ import sys
 from openai import OpenAI
 import time as t
 from pathlib import Path
+from .env import OPENAI_API_KEY
 
-<<<<<<< HEAD
-client = OpenAI()
-assistants = {"Seer_resume" : "asst_Gok4cxceSXmNfNDIWBwWc4Yq", "Seer_img" : "6BtoIKz3hnfjGkVmT8JCMb7c"}
-=======
+
 client = OpenAI(api_key=OPENAI_API_KEY)
 assistants = {"Seer_resume" : "asst_oM08cV3EApkYChIY39JV24zI", "Seer_img" : "asst_v25VFWtDYmeluDwi7C5PzyMV"}
->>>>>>> openaiimg
+
 
 def newAiThread():
     thread = client.beta.threads.create() #On crée le thread, une conversation
