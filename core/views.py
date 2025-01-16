@@ -12,7 +12,13 @@ from django.conf import settings
 from core.ai.openaiHandler import newAiThread,askAIfor
 
 COLORS = [{"name":"ry","display": "Red and Yellow"},{"name":"rb","display": "Red and Blue"}]
-LANGUAGES = [{"name": "en", "display": "English"},{"name": "fr", "display": "Français"},{"name": "de", "display": "Deutsch"},{"name": "ar", "display": "العربية"},{"name": "es", "display": "Español"},{"name": "ta", "display": "தமிழ்"}
+LANGUAGES = [
+    {"name": "en", "display": "English"},
+    {"name": "fr", "display": "Français"},
+    {"name": "de", "display": "Deutsch"},
+    {"name": "ar", "display": "العربية"},
+    {"name": "es", "display": "Español"},
+    {"name": "ta", "display": "தமிழ்"}
 ]
 
 
@@ -161,3 +167,28 @@ def view_history(request):
     user_history = History.objects.filter(user=request.user).order_by('-date')
     
     return render(request, 'page/history.html', {'user_history': user_history})
+
+
+@login_required
+def user_settings(request):
+    user = request.user
+
+    if request.method == 'POST':
+        # Récupérez les données du formulaire
+        email = request.POST.get('user_mail')
+        password = request.POST.get('user_password')
+
+        # Mettez à jour l'email de l'utilisateur
+        if email:
+            user.email = email
+
+        # Mettez à jour le mot de passe de l'utilisateur si un nouveau mot de passe est fourni
+        if password:
+            user.set_password(password)
+
+        # Sauvegardez les modifications sur l'utilisateur
+        user.save()
+
+        return redirect('view_acceuil_user')  # Redirection après mise à jour
+
+    return render(request, 'page/parametres.html', {'user': user})

@@ -18,30 +18,20 @@
 
 {% block content %}
     <div class="form-container form-large">
-        <form action="/ma-page-de-traitement" method="post">
-            <ul>
-              <li class="form-group">
-                <label for="mail">Email : </label>
-                <input type="email" id="mail" name="user_mail" />
-              </li>
-              <li class="form-group">
-                <label for="password">Mot de passe : </label>
-                <input type="password" id="password" name="user_password" />
-              </li>
-              <li class="form-group">
-                <label for="language">Language par défaut : </label>
-                {% include "../components/select.html" with name="language" list=LANGUAGES %}
-              </li>
-              <li class="form-group">
-                <label for="constrast">Contraste : </label>
-                {% include "../components/select.html" with name="contraste" list=COLORS %}
-              </li>
-              <li class="form-group">
-                <label for="textmode">Mode texte seulement : </label>
-                <input type="checkbox" id="textmode" name="textmode"/>
-              </li>
-            </ul>
-            <button type="submit">Valider</button>
-          </form>          
+        <form action="{% url 'user_settings' %}" method="post">
+    {% csrf_token %}
+    <ul>
+        <li class="form-group">
+            <label for="mail">Email : </label>
+            <input type="email" id="mail" name="user_mail" value="{{ user.email }}" />
+        </li>
+        <li class="form-group">
+            <label for="password">Mot de passe : </label>
+            <input type="password" id="password" name="user_password" />
+        
+    </ul>
+    <button type="submit">Valider</button>
+</form>
+       
     </div>
 {% endblock %}

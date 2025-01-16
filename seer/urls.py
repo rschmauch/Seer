@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import view_accueil, view_history, view_parametres, view_scraping, view_login, register_user,view_acceuil_user, login_user,view_scraping_user
+from core.views import view_accueil, view_history, view_parametres, view_scraping, view_login, register_user,view_acceuil_user, login_user,view_scraping_user, user_settings
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -32,6 +32,7 @@ urlpatterns = [
     path('login/', login_user, name='login_user'),  
     path('acceuil_user/', view_acceuil_user, name='view_acceuil_user'), 
     path('history/', view_history, name='view_history'),
+    path('parametres/', user_settings, name='user_settings'),
 
 ]
 
