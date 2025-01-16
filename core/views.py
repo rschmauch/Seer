@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.conf import settings
 from core.ai.openaiHandler import newAiThread,askAIfor
 
-COLORS = [{"name":"ry","display": "Red and Yellow"},{"name":"rb","display": "Red and Blue"}]
+COLORS = [{"name": "none", "display": "Aucun"},{"name":"ry","display": "Red and Yellow"},{"name":"rb","display": "Red and Blue"}]
 LANGUAGES = [
     {"name": "en", "display": "English"},
     {"name": "fr", "display": "Français"},
