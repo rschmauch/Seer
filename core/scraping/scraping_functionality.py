@@ -24,7 +24,7 @@ def save_image(url, base_path):
             return path
     except Exception as e:
         print(f"Erreur lors de la sauvegarde de l'image : {e}")
-    return None
+    return filename
 
 def contenu_site(url, media_root):
     try:

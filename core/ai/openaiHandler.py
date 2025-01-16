@@ -2,25 +2,39 @@ import sys
 from core.ai.env import OPENAI_API_KEY
 from openai import OpenAI
 import time as t
+from pathlib import Path
 
 client = OpenAI(api_key=OPENAI_API_KEY)
-assistants = {"Seer_resume" : "asst_Gok4cxceSXmNfNDIWBwWc4Yq", "Seer_img" : "6BtoIKz3hnfjGkVmT8JCMb7c"}
+assistants = {"Seer_resume" : "asst_oM08cV3EApkYChIY39JV24zI", "Seer_img" : "asst_v25VFWtDYmeluDwi7C5PzyMV"}
 
 def newAiThread():
     thread = client.beta.threads.create() #On crée le thread, une conversation
     return thread
 
-def askAIfor(msg,thread,type="txt"):
-    message = client.beta.threads.messages.create(  #On crée un message de l'utilisateur sur le thread.
-        thread.id,
-        role="user",
-        content=msg
-    )
+def askAIfor(target,thread,type="txt"):
 
     if type == "txt":
         assistant = assistants["Seer_resume"]
+        contentSent=target
     if type == "img":
         assistant = assistants["Seer_img"]
+        target = "media/"+target
+        file_path = Path(__file__).parent.parent.parent / target
+        img = client.files.create(file= open(file_path, "rb"),purpose="vision")
+        id = img.id
+        contentSent=[{
+            "type": "image_file",
+            "image_file" : {
+                "file_id": id,
+                "detail": "low"
+            }
+        }]
+
+    message = client.beta.threads.messages.create(  #On crée un message de l'utilisateur sur le thread.
+    thread.id,
+    role="user",
+    content=contentSent
+    )
 
     run = client.beta.threads.runs.create( #On fait tourner l'ia sur le thread
         thread_id=thread.id,
@@ -36,6 +50,8 @@ def askAIfor(msg,thread,type="txt"):
             messages = client.beta.threads.messages.list( #On récupère la liste des messages
                 thread_id=thread.id
                 )
+            if type == "img":
+                client.files.delete(id)
             return messages.data[0].content[0].text.value
             break
         if run.status == "expired":

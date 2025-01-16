@@ -41,14 +41,22 @@ def view_scraping(request):
 
         contenu = contenu_site(url, settings.MEDIA_ROOT)
 
+        thread = newAiThread()
+
         text = ""
         if contenu:
             for element in contenu:
-                if element.get('text'): 
+                if element['type'] == "image":
+                    if (element['src'][-3:] == "png") or (element['src'][-4:] == "jpeg"):
+                        if element['alt'] == "":
+                            img = "prout" #askAIfor(element['src'],thread,type="img")
+                        else:
+                            img = element['alt']
+                        text = text+"Img:"+img+"\n"
+                elif element.get('text'): 
                     text = text+element['name']+":"+element['text']+"\n"
 
         # Traitement par IA:
-        thread = newAiThread()
         contenu = askAIfor(text,thread)
         
         
@@ -57,7 +65,7 @@ def view_scraping(request):
         # Effectuer la traduction avec Google Translator via deep_translator
             contenu = GoogleTranslator(source='auto', target=language).translate(contenu)
         except Exception as e:
-            print(f"Erreur de traduction pour {element['text']}: {e}")
+            print(f"Erreur de traduction pour {contenu}: {e}")
 
         
         return render(request, './page/acceuil.html', {
@@ -68,6 +76,7 @@ def view_scraping(request):
         })
     
     return redirect('view_accueil')
+
 @login_required
 def view_scraping_user(request):
     if request.method == 'POST':
